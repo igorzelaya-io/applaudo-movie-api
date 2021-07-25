@@ -51,6 +51,31 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
+        
+		<!-- JAVA_PERSISTENCE -->
+		<dependency>
+		    <groupId>javax.persistence</groupId>
+		    <artifactId>javax.persistence-api</artifactId>
+		</dependency>
+
+		<!-- SPRING DATA JPA -->
+		<dependency>
+		     <groupId>org.springframework.boot</groupId>
+		     <artifactId>spring-boot-starter-data-jpa</artifactId>
+		 </dependency>  
+		
+		<!-- SPRING VALIDATION -->
+		<dependency> 
+		    <groupId>org.springframework.boot</groupId> 
+		    <artifactId>spring-boot-starter-validation</artifactId> 
+		</dependency>
+		
+		
+		<!-- MySQL DRIVER -->
+		<dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		</dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
