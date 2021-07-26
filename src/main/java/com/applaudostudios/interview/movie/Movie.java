@@ -55,14 +55,13 @@ public class Movie {
 	@NotNull
 	private Integer salePrice;
 	
-	@JsonIgnore
 	@Column(name = "movie_status", nullable = false)
+	@JsonIgnore
 	@Enumerated(EnumType.ORDINAL)
 	private MovieStatus movieStatus;
 	
 	@Transient
-	@JsonProperty("available")
-	private boolean available;
+	private boolean available = true;
 	
 	//MOVIE STATUS
 	
