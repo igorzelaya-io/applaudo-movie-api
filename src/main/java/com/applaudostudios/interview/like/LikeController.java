@@ -21,7 +21,7 @@ public class LikeController {
 	private LikeService likeService;
 	
 	@PostMapping
-	public ResponseEntity<? extends Response<Like>> postLike(@Valid @RequestBody(required = true)Like like){
+	public ResponseEntity<? extends Response<Like>> postLike(@Valid @RequestBody(required = true)LikeRequest like){
 		Like savedLike = this.likeService.saveLike(like);
 		BaseResponse<Like> likeResponse = new BaseResponse<>();
 		return likeResponse.createResponse(HttpStatus.CREATED, "Movie was liked successfully.", savedLike);
