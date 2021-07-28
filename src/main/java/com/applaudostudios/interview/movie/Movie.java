@@ -1,5 +1,6 @@
 package com.applaudostudios.interview.movie;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -48,12 +49,12 @@ public class Movie {
 	@JsonProperty("rentalPrice")
 	@Column(name = "movie_rental_price", nullable = false)
 	@NotNull
-	private Integer rentalPrice;
+	private BigDecimal rentalPrice;
 	
 	@JsonProperty("salePrice")
 	@Column(name = "movie_sale_price", nullable = false)
 	@NotNull
-	private Integer salePrice;
+	private BigDecimal salePrice;
 	
 	@Column(name = "movie_status", nullable = false)
 	@JsonIgnore
@@ -70,7 +71,7 @@ public class Movie {
 		this.movieId = UUID.randomUUID().toString();
 	}
 
-	public Movie(String title, String description, Integer stock, Integer rentalPrice, Integer salePrice, MovieStatus status) {
+	public Movie(String title, String description, Integer stock, BigDecimal rentalPrice, BigDecimal salePrice, MovieStatus status) {
 		super();
 		this.title = title;
 		this.description = description;
@@ -132,28 +133,28 @@ public class Movie {
 		return this;
 	}
 
-	public Integer getRentalPrice() {
+	public BigDecimal getRentalPrice() {
 		return rentalPrice;
 	}
 
-	public void setRentalPrice(Integer rentalPrice) {
+	public void setRentalPrice(BigDecimal rentalPrice) {
 		this.rentalPrice = rentalPrice;
 	}
 	
-	public Movie rentalPrice(Integer rentalPrice) {
+	public Movie rentalPrice(BigDecimal rentalPrice) {
 		setRentalPrice(rentalPrice);
 		return this;
 	}
 
-	public Integer getSalePrice() {
+	public BigDecimal getSalePrice() {
 		return salePrice;
 	}
 
-	public void setSalePrice(Integer salePrice) {
+	public void setSalePrice(BigDecimal salePrice) {
 		this.salePrice = salePrice;
 	}
 	
-	public Movie salePrice(Integer salePrice) {
+	public Movie salePrice(BigDecimal salePrice) {
 		setSalePrice(salePrice);
 		return this;
 	}
