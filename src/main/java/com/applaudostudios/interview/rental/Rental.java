@@ -1,16 +1,22 @@
 package com.applaudostudios.interview.rental;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.applaudostudios.interview.movie.Movie;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -32,7 +38,12 @@ public class Rental {
 	@Column(name = "rental_customer_email")
 	private String rentalCustomerEmail;
 	
-	@ManyToOne
+	@Temporal(TemporalType.DATE)
+	@Column(name = "rental_date")
+	@JsonIgnore
+	private Date rentalDate;
+	
+	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	@JoinColumn(name = "movie_id")
 	@JsonProperty
 	private Movie movie;

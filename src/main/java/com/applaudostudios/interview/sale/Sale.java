@@ -1,17 +1,23 @@
 package com.applaudostudios.interview.sale;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 
 import com.applaudostudios.interview.movie.Movie;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -39,8 +45,13 @@ public class Sale {
 	@Column(name = "sale_price")
 	private BigDecimal salePrice;
 	
+	@JsonIgnore
+	@Column(name = "sale_date")
+	@Temporal(TemporalType.DATE)
+	private Date saleDate;
+	
 	@JsonProperty
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "movie_id")
 	private Movie movie;
 	

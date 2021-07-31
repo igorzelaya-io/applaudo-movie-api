@@ -1,18 +1,29 @@
 package com.applaudostudios.interview.movie;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Fetch;
+
+import com.applaudostudios.interview.like.Like;
+import com.applaudostudios.interview.rental.Rental;
+import com.applaudostudios.interview.sale.Sale;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -61,10 +72,23 @@ public class Movie {
 	@Enumerated(EnumType.ORDINAL)
 	private MovieStatus movieStatus;
 	
+//	@OneToOne(mappedBy = "movie", cascade = CascadeType.REMOVE,
+//				fetch = FetchType.LAZY)
+//	@JsonProperty
+//	private Like movieLikes;
+	
+	@OneToMany(mappedBy = "movie", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+	@JsonProperty
+	private List<Rental> movieRental;
+	
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "movie", cascade = CascadeType.REMOVE)
+	@JsonProperty
+	private List<Sale> movieSales;
+	
+	
 	@Transient
 	private boolean available = true;
-	
-	//MOVIE STATUS
 	
 	public Movie() {
 		super();
@@ -184,4 +208,12 @@ public class Movie {
 		setAvailable(available);
 		return this;
 	}
+
+//	public Like getMovieLikes() {
+//		return this.movieLikes;
+//	}
+//	
+//	public void setMovieLikes(Like like) {
+//		this.movieLikes = like;
+//	}
 }
